@@ -6,7 +6,7 @@ document.querySelector('#register').addEventListener('click', function () {
 		password: document.querySelector('#registerPassword').value,
 	}
 
-	fetch('https://backend-weather-et59w0m3h-alune62.vercel.app/users/signup', {
+	fetch('https://backend-weather-jlvv4e7by-alune62.vercel.app/users/signup', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(user),
@@ -26,7 +26,7 @@ document.querySelector('#connection').addEventListener('click', function () {
 		password: document.querySelector('#connectionPassword').value,
 	}
 
-	fetch('https://backend-weather-et59w0m3h-alune62.vercel.app/users/signin', {
+	fetch('https://backend-weather-jlvv4e7by-alune62.vercel.app/users/signin', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(user),
