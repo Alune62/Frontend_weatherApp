@@ -78,4 +78,30 @@ document.querySelector('#addCity').addEventListener('click', function () {
 			}
 
 		});
+
+
+		// Avant d'ajouter une ville, récupérez d'abord les villes existantes
+fetch('https://backend-weather-jlvv4e7by-alune62.vercel.app/cities')
+.then(response => response.json())
+.then(data => {
+  if (data.cities) {
+	for (let i = 0; i < data.cities.length; i++) {
+	  document.querySelector('#cityList').innerHTML += `
+	  <div class="cityContainer">
+		<p class="name">${data.cities[i].cityName}</p>
+		<p class="description">${data.cities[i].description}</p>
+		<img class="weatherIcon" src="images/${data.cities[i].main}.png"/>
+		<div class="temperature">
+		  <p class="tempMin">${data.cities[i].tempMin}°C</p>
+		  <span>-</span>
+		  <p class="tempMax">${data.cities[i].tempMax}°C</p>
+		</div>
+		<button class="deleteCity" id="${data.cities[i].cityName}">Delete</button>
+	  </div>
+	  `;
+	}
+	updateDeleteCityEventListener();
+  }
+});
+
 });
