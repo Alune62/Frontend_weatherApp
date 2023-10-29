@@ -87,7 +87,7 @@ input:focus {
 	justify-content: space-between;
 	align-items: center;
 	width: 250px;
-	margin: 30px;
+	margin: 50px;
 	background-color: white;
 	background-size: cover;
 	border-radius: 20px;
@@ -162,7 +162,7 @@ input:focus {
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
-	width: 1130px;
+	width: 100%;
 	padding: 20px;
 	margin: 30px;
 	background-color: white;
@@ -173,8 +173,8 @@ input:focus {
 #leftSide {
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
+	justify-content: center;
+	align-items: center;
 }
 
 #currentPosIcon {

@@ -1,4 +1,4 @@
-fetch('https://backend-weather-jlvv4e7by-alune62.vercel.app/weather')
+fetch('https://backend-weather-l7yp8fame-alune62.vercel.app/weather')
 	.then(response => response.json())
 	.then(data => {
 		if (data.weather && data.currentPosWeather) {
@@ -39,7 +39,7 @@ fetch('https://backend-weather-jlvv4e7by-alune62.vercel.app/weather')
 function updateDeleteCityEventListener() {
 	for (let i = 0; i < document.querySelectorAll('.deleteCity').length; i++) {
 		document.querySelectorAll('.deleteCity')[i].addEventListener('click', function () {
-			fetch(`https://backend-weather-jlvv4e7by-alune62.vercel.app/weather/${this.id}`, { method: 'DELETE' })
+			fetch(`https://backend-weather-l7yp8fame-alune62.vercel.app/weather/${this.id}`, { method: 'DELETE' })
 				.then(response => response.json())
 				.then(data => {
 					if (data.result) {
@@ -50,99 +50,57 @@ function updateDeleteCityEventListener() {
 	}
 }
 
-// document.querySelector('#addCity').addEventListener('click', function () {
-// 	const cityName = document.querySelector('#cityNameInput').value;
+document.querySelector('#addCity').addEventListener('click', function () {
+	const cityName = document.querySelector('#cityNameInput').value;
 
-// 	fetch('https://backend-weather-jlvv4e7by-alune62.vercel.app/weather', {
-// 		method: 'POST',
-// 		headers: { 'Content-Type': 'application/json' },
-// 		body: JSON.stringify({ cityName }),
-// 	}).then(response => response.json())
-// 		.then(data => {
-// 			if (data.result) {
-// 				document.querySelector('#cityList').innerHTML += `
-// 			<div class="cityContainer">
-// 				<p class="name">${data.weather.cityName}</p>
-// 				<p class="description">${data.weather.description}</p>
-// 				<img class="weatherIcon" src="images/${data.weather.main}.png"/>
-// 				<div class="temperature">
-// 					<p class="tempMin">${data.weather.tempMin}°C</p>
-// 					<span>-</span>
-// 					<p class="tempMax">${data.weather.tempMax}°C</p>
-// 				</div>
-// 				<button class="deleteCity" id="${data.weather.cityName}">Delete</button>
-// 			</div>
-// 					`;
-// 				updateDeleteCityEventListener();
-// 				document.querySelector('#cityNameInput').value = '';
-// 			}
+	fetch('https://backend-weather-l7yp8fame-alune62.vercel.app/weather', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ cityName }),
+	}).then(response => response.json())
+		.then(data => {
+			if (data.result) {
+				document.querySelector('#cityList').innerHTML += `
+			<div class="cityContainer">
+				<p class="name">${data.weather.cityName}</p>
+				<p class="description">${data.weather.description}</p>
+				<img class="weatherIcon" src="images/${data.weather.main}.png"/>
+				<div class="temperature">
+					<p class="tempMin">${data.weather.tempMin}°C</p>
+					<span>-</span>
+					<p class="tempMax">${data.weather.tempMax}°C</p>
+				</div>
+				<button class="deleteCity" id="${data.weather.cityName}">Delete</button>
+			</div>
+					`;
+				updateDeleteCityEventListener();
+				document.querySelector('#cityNameInput').value = '';
+			}
 
-// 		});
+		});
+
+});
 
 // Récupération et affichage des villes existantes au chargement de la page d'accueil
-fetch('https://backend-weather-jlvv4e7by-alune62.vercel.app/cities')
-  .then(response => response.json())
-  .then(data => {
-    if (data.cities) {
-      for (let i = 0; i < data.cities.length; i++) {
-        document.querySelector('#cityList').innerHTML += `
-        <div class="cityContainer">
-          <p class="name">${data.cities[i].cityName}</p>
-          <p class="description">${data.cities[i].description}</p>
-          <img class="weatherIcon" src="images/${data.cities[i].main}.png"/>
-          <div class="temperature">
-            <p class="tempMin">${data.cities[i].tempMin}°C</p>
-            <span>-</span>
-            <p class="tempMax">${data.cities[i].tempMax}°C</p>
-          </div>
-          <button class="deleteCity" id="${data.cities[i].cityName}">Delete</button>
-        </div>
-        `;
-      }
-      updateDeleteCityEventListener();
-    }
-  });
-
-function updateDeleteCityEventListener() {
-  for (let i = 0; i < document.querySelectorAll('.deleteCity').length; i++) {
-    document.querySelectorAll('.deleteCity')[i].addEventListener('click', function () {
-      fetch(`https://backend-weather-jlvv4e7by-alune62.vercel.app/weather/${this.id}`, { method: 'DELETE' })
-        .then(response => response.json())
-        .then(data => {
-          if (data.result) {
-            this.parentNode.remove();
-          }
-        });
-    });
+fetch('https://backend-weather-l7yp8fame-alune62.vercel.app/cities')
+.then(response => response.json())
+.then(data => {
+  if (data.cities) {
+	for (let i = 0; i < data.cities.length; i++) {
+	  document.querySelector('#cityList').innerHTML += `
+	  <div class="cityContainer">
+		<p class="name">${data.cities[i].cityName}</p>
+		<p class="description">${data.cities[i].description}</p>
+		<img class="weatherIcon" src="images/${data.cities[i].main}.png"/>
+		<div class="temperature">
+		  <p class="tempMin">${data.cities[i].tempMin}°C</p>
+		  <span>-</span>
+		  <p class="tempMax">${data.cities[i].tempMax}°C</p>
+		</div>
+		<button class="deleteCity" id="${data.cities[i].cityName}">Delete</button>
+	  </div>
+	  `;
+	}
+	updateDeleteCityEventListener();
   }
-}
-
-document.querySelector('#addCity').addEventListener('click', function () {
-  const cityName = document.querySelector('#cityNameInput').value;
-
-  fetch('https://backend-weather-jlvv4e7by-alune62.vercel.app/weather', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ cityName }),
-  })
-    .then(response => response.json())
-    .then(data => {
-      if (data.result) {
-        document.querySelector('#cityList').innerHTML += `
-        <div class="cityContainer">
-          <p class="name">${data.weather.cityName}</p>
-          <p class="description">${data.weather.description}</p>
-          <img class "weatherIcon" src="images/${data.weather.main}.png"/>
-          <div class="temperature">
-            <p class="tempMin">${data.weather.tempMin}°C</p>
-            <span>-</span>
-            <p class="tempMax">${data.weather.tempMax}°C</p>
-          </div>
-          <button class="deleteCity" id="${data.weather.cityName}">Delete</button>
-        </div>
-        `;
-        updateDeleteCityEventListener();
-        document.querySelector('#cityNameInput').value = '';
-      }
-    });
 });
